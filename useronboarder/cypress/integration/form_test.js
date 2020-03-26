@@ -1,21 +1,40 @@
-describe("Testing our form", function(){
-  beforeEach(function(){
+describe("Testing our form", function ()
+{
+  beforeEach(function ()
+  {
     cy.visit("http://localhost:3000")
   })
-  it("Add test to inputs and submit form", function(){
+  it("Add test to inputs and submit form", function ()
+  {
     cy.get('[for="name"] > input')
-    .type("Jessica Rabbit")
-    .should("have.value", "Jessica Rabbit")
+      .type("Jessica Rabbit")
+      .should("have.value", "Jessica Rabbit")
+    cy.get('input:invalid').should('have.length', 0)
     cy.get('[for="email"] > input')
-    .type("Jessica@Rabbits.com")
-    .should("have.value", "Jessica@Rabbits.com")
+      .type("Jessica@Rabbits.com")
+      .should("have.value", "Jessica@Rabbits.com")
     cy.get('[for="Password"] > input')
-    .type("1234")
-    .should("have.value","1234")
+      .type("1234")
+      .should("have.value", "1234")
     cy.get('[for="agreement"] > input')
-    .check()
+      .check()
+      .should('be.checked')
     cy.get('button')
-    .click()
-    
+      .click()
   })
+  // it('check validation message on invalid input', () =>
+  // {
+  //   cy.get('[for="name"] > input')
+  //     .type("Jessica Rabbit")
+  //     .type("")
+  //     .should("have.value", "Jessica Rabbit")
+  //   cy.get('input:invalid').should('have.length', 0)
+  //   cy.get('[type="email"]').type('not_an_email')
+  //   cy.get('[type="submit"]').click()
+  //   cy.get('input:invalid').should('have.length', 1)
+  //   cy.get('[type="email"]').then(($input) =>
+  //   {
+  //     expect($input[0].validationMessage).to.eq('I expect an email!')
+  //   })
+  // })
 })
