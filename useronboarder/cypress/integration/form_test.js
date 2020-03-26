@@ -22,19 +22,29 @@ describe("Testing our form", function ()
     cy.get('button')
       .click()
   })
-  // it('check validation message on invalid input', () =>
-  // {
-  //   cy.get('[for="name"] > input')
-  //     .type("Jessica Rabbit")
-  //     .type("")
-  //     .should("have.value", "Jessica Rabbit")
-  //   cy.get('input:invalid').should('have.length', 0)
-  //   cy.get('[type="email"]').type('not_an_email')
-  //   cy.get('[type="submit"]').click()
-  //   cy.get('input:invalid').should('have.length', 1)
-  //   cy.get('[type="email"]').then(($input) =>
-  //   {
-  //     expect($input[0].validationMessage).to.eq('I expect an email!')
-  //   })
-  // })
+  it('check validation message on invalid input', () =>
+  {
+    cy.get('[for="name"] > input')
+      .type("Jessica Rabbit")
+      .clear()
+    cy.get('[for="name"] > .error')
+      .should('have.length', 1)
+      .contains('Name is a required field bro.')
+
+    cy.get('[for="email"] > input')
+      .type("Jessica")
+    cy.get('[for="email"] > .error')
+      .contains('Must be a valid Email Address.')
+    cy.get('[for="email"] > input')
+      .clear()
+    cy.get('[for="email"] > .error')
+      .contains('Must include an email address')
+      
+      cy.get('[for="Password"] > input')
+      .type('a')
+      .clear()
+      cy.get('[for="Password"] > .error')
+      .contains('Must choose a password')
+
+  })
 })
