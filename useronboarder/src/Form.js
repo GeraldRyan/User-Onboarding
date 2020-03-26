@@ -130,10 +130,10 @@ export default function Form()
             {errors.email.length > 0 ? <p className="error"> {errors.email}</p> : null}
         </label>
 
-        <label htmlFor="">
+        <label htmlFor="Password">
           Password:
         <input
-            type="text"
+            type="password"
             name="password"
             value={formState.password}
             onChange={inputChange} 
@@ -150,7 +150,7 @@ export default function Form()
         onChange={inputChange} />
       </label> */}
 
-        <label htmlFor="">
+        <label htmlFor="agreement">
           I agree to the terms:
         <input
             type="checkbox"
@@ -158,7 +158,7 @@ export default function Form()
             checked={formState.terms}
             onChange={inputChange} />
         </label>
-        <button disabled={buttonDisabled}>Submit</button>
+        <button type="submit" disabled={buttonDisabled}>Submit</button>
       </form>
       <pre>{JSON.stringify(users,null,2)}</pre>
 
