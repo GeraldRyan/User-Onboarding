@@ -1,0 +1,9 @@
+label{
+  display:block;
+}
+
+.error{
+  font-size: 10PX;
+  color:red;
+  font-style:italic;
+}
